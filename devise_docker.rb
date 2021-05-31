@@ -103,12 +103,12 @@ environment generators
 
 # DATABASE
 ########################################
-inject_into_file 'config/database', after: 'default: &default\n' do
-  <<-YAML
+inject_into_file 'config/database.yml', after: 'default: &default\n' do
+  <<-YML
   host: db
   username: postgres
   password: password
-  YAML
+  YML
 end
 
 
