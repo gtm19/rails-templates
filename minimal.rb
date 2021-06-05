@@ -74,17 +74,6 @@ RUBY
 
 environment generators
 
-#  DATABASE STUFF
-########################################
-inject_into_file 'config/database.yml', after: 'default: &default' do
-  <<~DB
-  
-  host: db
-  username: postgres
-  password: password
-  DB
-end
-
 ########################################
 # AFTER BUNDLE
 ########################################

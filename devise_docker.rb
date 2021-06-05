@@ -101,16 +101,15 @@ RUBY
 
 environment generators
 
-# DATABASE
+#  DATABASE STUFF
 ########################################
-inject_into_file 'config/database.yml', after: 'default: &default\n' do
-  <<-YML
+inject_into_file 'config/database.yml', after: /default: &default\n/ do 
+  <<-DB
   host: db
   username: postgres
   password: password
-  YML
+  DB
 end
-
 
 ########################################
 # AFTER BUNDLE
@@ -221,8 +220,8 @@ after_bundle do
 
   # Git
   ########################################
-  git add: '.'
-  git commit: "-m 'Initial commit with devise template from https://github.com/lewagon/rails-templates'"
+  # git add: '.'
+  # git commit: "-m 'Initial commit with devise template from https://github.com/lewagon/rails-templates'"
 
   # Fix puma config
   gsub_file('config/puma.rb', 'pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }', '# pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }')

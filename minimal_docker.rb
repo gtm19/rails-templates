@@ -58,7 +58,7 @@ gsub_file('app/views/layouts/application.html.erb', "<%= stylesheet_link_tag 'ap
 # README
 ########################################
 markdown_file_content = <<~MARKDOWN
-  Rails app generated with [gtm19/rails-templates](https://github.com/gtm19/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team and modified by [gtm19](https://github.com/gtm19/).
+  Rails app generated with [gtm19/rails-templates](https://github.com/gtm19/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
 MARKDOWN
 file 'README.md', markdown_file_content, force: true
 
@@ -74,12 +74,23 @@ RUBY
 
 environment generators
 
+#  DATABASE STUFF
+########################################
+inject_into_file 'config/database.yml', after: /default: &default\n/ do 
+  <<-DB
+  host: db
+  username: postgres
+  password: password
+  DB
+end
+
 ########################################
 # AFTER BUNDLE
 ########################################
 after_bundle do
-  # Generators: simple form + pages controller
+  # Generators: db + simple form + pages controller
   ########################################
+  rails_command 'db:drop db:create db:migrate'
   generate('simple_form:install', '--bootstrap')
   generate(:controller, 'pages', 'home', '--skip-routes', '--no-test-framework')
 
@@ -146,13 +157,12 @@ after_bundle do
 
   # Rubocop
   ########################################
-  run 'curl -L https://raw.githubusercontent.com/gtm19/rails-templates/master/.rubocop.yml > .rubocop.yml'
+  run 'curl -L https://raw.githubusercontent.com/lewagon/rails-templates/master/.rubocop.yml > .rubocop.yml'
 
   # Git
   ########################################
-  git :init
-  git add: '.'
-  git commit: "-m 'Initial commit with minimal template from https://github.com/lewagon/rails-templates'"
+  # git add: '.'
+  # git commit: "-m 'Initial commit with minimal template from https://github.com/gtm19/rails-templates'"
 
   # Fix puma config
   gsub_file('config/puma.rb', 'pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }', '# pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }')
