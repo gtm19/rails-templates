@@ -76,11 +76,11 @@ environment generators
 
 #  DATABASE STUFF
 ########################################
-inject_into_file 'config/database.yml', after: 'default: &default' do
-  <<-DB
-    host: db
-    username: postgres
-    password: password
+inject_into_file 'config/database.yml', after: 'pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>\n' do
+  <<~DB
+  host: db
+  username: postgres
+  password: password
   DB
 end
 
