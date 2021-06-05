@@ -150,7 +150,6 @@ after_bundle do
 
   # Git
   ########################################
-  run 'rm -rf .git'
   git :init
   git add: '.'
   git commit: "-m 'Initial commit with minimal template from https://github.com/lewagon/rails-templates'"
