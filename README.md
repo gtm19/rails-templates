@@ -24,7 +24,7 @@ As above (mainly) but without calls to the database. This is because `Docker Com
 rails new \
   --database postgresql \
   --webpack \
-  -m https://raw.githubusercontent.com/gtm19/rails-templates/master/minimal.rb \
+  -m https://raw.githubusercontent.com/gtm19/rails-templates/master/minimal_nodb.rb \
   CHANGE_THIS_TO_YOUR_RAILS_APP_NAME
 ```
 
