@@ -58,7 +58,7 @@ gsub_file('app/views/layouts/application.html.erb', "<%= stylesheet_link_tag 'ap
 # README
 ########################################
 markdown_file_content = <<~MARKDOWN
-  Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+  Rails app generated with [gtm19/rails-templates](https://github.com/gtm19/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
 MARKDOWN
 file 'README.md', markdown_file_content, force: true
 
@@ -73,6 +73,16 @@ generators = <<~RUBY
 RUBY
 
 environment generators
+
+#  DATABASE STUFF
+########################################
+inject_into_file 'config/database.yml', after: 'default: &default' do
+  <<-DB
+    host: db
+    username: postgres
+    password: password
+  DB
+end
 
 ########################################
 # AFTER BUNDLE
@@ -152,7 +162,7 @@ after_bundle do
   # Git
   ########################################
   git add: '.'
-  git commit: "-m 'Initial commit with minimal template from https://github.com/lewagon/rails-templates'"
+  git commit: "-m 'Initial commit with minimal template from https://github.com/gtm19/rails-templates'"
 
   # Fix puma config
   gsub_file('config/puma.rb', 'pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }', '# pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }')
