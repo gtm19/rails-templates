@@ -16,18 +16,6 @@ rails new \
   CHANGE_THIS_TO_YOUR_RAILS_APP_NAME
 ```
 
-## Minimal - no db
-
-As above (mainly) but without calls to the database. This is because `Docker Compose` had issues running these commands due to the database existing in a separate container.
-
-```bash
-rails new \
-  --database postgresql \
-  --webpack \
-  -m https://raw.githubusercontent.com/gtm19/rails-templates/master/minimal_nodb.rb \
-  CHANGE_THIS_TO_YOUR_RAILS_APP_NAME
-```
-
 ## Devise
 
 Same as minimal **plus** a Devise install with a generated `User` model.
@@ -39,3 +27,7 @@ rails new \
   -m https://raw.githubusercontent.com/gtm19/rails-templates/master/devise.rb \
   CHANGE_THIS_TO_YOUR_RAILS_APP_NAME
 ```
+
+## Docker
+
+There are `_docker.rb` templates included too. Click the link to read about how to use them with [rails-docker](https://github.com/gtm19/rails-docker).
