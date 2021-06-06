@@ -1,5 +1,7 @@
 run "if uname | grep -q 'Darwin'; then pgrep spring | xargs kill -9; fi"
 
+RAILS_DOCKER_VERSION = ENV["RAILS_DOCKER_VERSION"] || "[NOT SPECIFIED]"
+
 # GEMFILE
 ########################################
 inject_into_file 'Gemfile', before: 'group :development, :test do' do
@@ -85,7 +87,9 @@ end
 # README
 ########################################
 markdown_file_content = <<-MARKDOWN
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+Rails app made using [rails-docker](https://github.com/gtm19/rails-docker) v#{RAILS_DOCKER_VERSION}.
+
+Rails template based on the [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
 MARKDOWN
 file 'README.md', markdown_file_content, force: true
 
