@@ -116,7 +116,7 @@ after_bundle do
     # Environments
   ########################################
   # whitelisting for Docker web console availability:
-  environment 'config.web_console.whitelisted_ips = "172.16.0.0/12"', env: 'development'
+  environment 'config.web_console.whitelisted_ips = ["172.16.0.0/12", "192.168.0.0/16"]', env: 'development'
 
   # Webpacker / Yarn
   ########################################
