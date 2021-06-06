@@ -173,6 +173,8 @@ after_bundle do
   # Environments
   ########################################
   environment 'config.action_mailer.default_url_options = { host: "http://localhost:3000" }', env: 'development'
+  # whitelisting for Docker web console availability:
+  environment 'config.web_console.whitelisted_ips = "172.16.0.0/12"', env: 'development'
   environment 'config.action_mailer.default_url_options = { host: "http://TODO_PUT_YOUR_DOMAIN_HERE" }', env: 'production'
 
   # Webpacker / Yarn

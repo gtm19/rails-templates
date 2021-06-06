@@ -113,6 +113,11 @@ after_bundle do
     .DS_Store
   TXT
 
+    # Environments
+  ########################################
+  # whitelisting for Docker web console availability:
+  environment 'config.web_console.whitelisted_ips = "172.16.0.0/12"', env: 'development'
+
   # Webpacker / Yarn
   ########################################
   run 'yarn add popper.js jquery bootstrap@4.6'
